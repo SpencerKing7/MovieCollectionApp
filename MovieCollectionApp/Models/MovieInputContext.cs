@@ -13,16 +13,30 @@ namespace MovieCollectionApp.Models
             //blank 
         }
 
-        public DbSet<MovieInputModel> responses { get; set; }
+        public DbSet<MovieInputModel> Responses { get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
 
+        //Seed Data
         protected override void OnModelCreating(ModelBuilder mb)
         {
+
+            mb.Entity<CategoryModel>().HasData(
+                new CategoryModel { CategoryId = 1, CategoryName="Action/Adventure"},
+                new CategoryModel { CategoryId = 2, CategoryName = "Comedy" },
+                new CategoryModel { CategoryId = 3, CategoryName = "Drama" },
+                new CategoryModel { CategoryId = 4, CategoryName = "Family" },
+                new CategoryModel { CategoryId = 5, CategoryName = "Horror/Suspense" },
+                new CategoryModel { CategoryId = 6, CategoryName = "Miscellaneous" },
+                new CategoryModel { CategoryId = 7, CategoryName = "Television" },
+                new CategoryModel { CategoryId = 8, CategoryName = "VHS" }
+            );
+
             mb.Entity<MovieInputModel>().HasData(
 
                 new MovieInputModel
                 {
                     MovieId = 1,
-                    Category = "Action/Adventure",
+                    CategoryId = 1,
                     Title = "Lord of the Rings - Return of the King",
                     Year = 2003,
                     Director = "Peter Jackson",
@@ -34,7 +48,7 @@ namespace MovieCollectionApp.Models
                 new MovieInputModel
                 {
                     MovieId = 2,
-                    Category = "Comedy",
+                    CategoryId = 2,
                     Title = "Get Smart",
                     Year = 2008,
                     Director = "Peter Segal",
@@ -46,7 +60,7 @@ namespace MovieCollectionApp.Models
                 new MovieInputModel
                 {
                     MovieId = 3,
-                    Category = "Action/Adventure",
+                    CategoryId = 1,
                     Title = "Interstellar",
                     Year = 2014,
                     Director = "Christopher Nolan",
